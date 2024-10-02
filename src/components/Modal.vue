@@ -1,34 +1,32 @@
 <script setup>
-import { useStoreTrivia } from '@/stores/StoreTrivia.js';
-import {ref} from 'vue'
+import { router } from '@/router';
+import {ref} from 'vue';
 
 let show = ref(true);
 
-let buttonStyle = {"text-3xl rounded h-20 bg-slate-300 hover:bg-emerald-900 hover:text-slate-200 mt-5 text-black basis-1/2" : true}
+const buttonStyle = {"text-3xl rounded h-24 sm:h-20 bg-slate-300 hover:bg-emerald-900 hover:text-slate-200 mt-5 text-black sm:basis-1/2" : true};
 
-let trivia = useStoreTrivia();
+const emit = defineEmits(['exit']);
 
 function close() {
+    router.push('/');
     show.value = false;
-}
+    emit('exit');
+};
 
 </script>
 
 <template>
     <Transition name="modal">
         <div class="modal-mask" v-if="show">
-            <div class="modal-container">
-                <div class="h-full flex flex-col place-content-center ">
-                    <h1 class="text-7xl text-center border-b-2 mb-1">TriviaRealm</h1>
-                    <p class="text-center text-xl">App to quiz yourself</p>
-                    <div class="flex place-content-center">
+            <div class="modal-container h-1/2 sm:h-auto flex flex-col place-content-center text-slate-800">
+                <div class="h-full">
+                    <h1 class="text-3xl sm:text-7xl text-center border-b-2 mb-1 text-balance  text-slate-300">Trivia</h1>
+                    <p class="text-center text-3xl">Quiz yourself on many topics!</p>
+                    <div class="flex place-content-center flex-col sm:flex-row">
                         <button
                             :class="buttonStyle"
-                            @click="close()">BEGIN</button>
-
-                        <button
-                            :class="buttonStyle" class ="ml-3"
-                            @click="close()">BEGIN</button>
+                            @click="close()">START</button>
                     </div>
                 </div>
 
@@ -50,7 +48,7 @@ function close() {
 
 .modal-container {
     background-color: rgb(117, 137, 130);
-    height: 300px;
+    /* height: 300px; */
     padding: 2rem;
     width: 60vw;
     max-width: 500px;
