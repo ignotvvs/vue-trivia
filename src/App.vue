@@ -1,24 +1,14 @@
 <script setup>
-import { onMounted } from 'vue';
 import Trivia from './components/Trivia.vue';
-import { useStoreTrivia } from '@/stores/StoreTrivia.js';
+import {router} from '@/router.js';
 
-const categories = useStoreTrivia();
-
-onMounted(() => {
-  categories.fetchCategories();
-})
+router.push('/');
 
 </script>
 
 <template>
-
-  <div class="">
-    <Trivia></Trivia>
-  </div>
+  
+  <Trivia></Trivia>
 
 </template>
-
-<style scoped>
-</style>
 
